@@ -1,0 +1,5 @@
+.login-screen {
+  height: -webkit-fill-available;
+  background: linear-gradient(180deg, #ffc257 50%, #ffffff 50%);
+  padding-top: 5%;
+}

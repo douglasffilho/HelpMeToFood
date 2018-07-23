@@ -1,3 +1,17 @@
-<p>
-  login-view works!
-</p>
+<div class="ui-g login-screen">
+  <div class="ui-g-4 ui-g-offset-4">
+    <p-growl [(value)]="messages" [life]=100000 ></p-growl>
+    <div class="logo"></div>
+    <form autocomplete="off" class="ui-form">
+      <div class="form">
+        <label for="login">Login</label>
+        <input type="text" name="login" [(ngModel)]="login" pInputText />
+
+        <label for="password">Senha</label>
+        <input type="password" name="password" [feedback]=false pPassword [(ngModel)]="password" />
+
+        <button pButton class="ui-button-info" (click)="doLogin()" label="Login"></button>
+      </div>
+    </form>
+  </div>
+</div>
