@@ -13,12 +13,10 @@ import { appRoutes } from './routes';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 
-import {InputTextModule} from 'primeng/inputtext';
-import {PasswordModule} from 'primeng/password';
-import {ButtonModule} from 'primeng/button';
-import { MessageModule } from 'primeng/message';
-import { MessagesModule } from 'primeng/messages';
-import {GrowlModule} from 'primeng/growl';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { LoginViewComponent } from './controllers/login/login-view/login-view.component';
@@ -26,8 +24,6 @@ import { HomeViewComponent } from './controllers/home/home-view/home-view.compon
 import { RouterComponent } from './controllers/router/router.component';
 import { AuthGuard } from './filters/guards/auth.guard';
 import { LogoutComponent } from './controllers/logout/logout.component';
-
-
 
 registerLocaleData(localePt);
 
@@ -45,12 +41,10 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    InputTextModule,
-    PasswordModule,
-    ButtonModule,
-    MessageModule,
-    MessagesModule,
-    GrowlModule
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt'},

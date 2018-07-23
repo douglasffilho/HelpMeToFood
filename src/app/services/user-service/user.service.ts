@@ -18,4 +18,8 @@ export class UserService {
     return this.http.post<any>(`${this.api}/auth`, login);
   }
 
+  forgotPassword(email): Observable<any> {
+    return this.http.get<any>(`${this.api}/auth/forgot-my-password/${email}`);
+  }
+
 }

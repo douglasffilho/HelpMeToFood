@@ -1,5 +1,29 @@
 .login-screen {
   height: -webkit-fill-available;
   background: linear-gradient(180deg, #ffc257 50%, #ffffff 50%);
-  padding-top: 5%;
+  padding: 10%;
+}
+
+mat-card-content p {
+  font-family: NothingYouCouldDo !important;
+  font-weight: bold !important;
+  font-size: 1.07rem !important;
+}
+
+.centralized-card {
+  text-align: center;
+  width: -webkit-fill-available;
+  margin: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+}
+
+@media screen and (min-width: 37.5rem) {
+  .centralized-card {
+    width: 26.5rem;
+  }
 }
