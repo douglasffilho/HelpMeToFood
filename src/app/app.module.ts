@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { LoginViewComponent } from './controllers/login/login-view/login-view.component';
@@ -44,7 +45,8 @@ registerLocaleData(localePt);
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt'},

@@ -16,6 +16,8 @@ export class LoginViewComponent implements OnInit {
 
   messages = [];
 
+  processingLogin = false;
+
   constructor(private router: Router, private userService: UserService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -29,14 +31,17 @@ export class LoginViewComponent implements OnInit {
   }
 
   doForgotMyPassword() {
+    this.processingLogin = true;
     this.userService.forgotPassword(this.login)
     .subscribe(
       (response) => {
+        this.processingLogin = false;
         if (response.message !== undefined) {
           this.showSnack(response.message, '');
         }
       },
       (error) => {
+        this.processingLogin = false;
         if (error.status === 0) {
           this.showSnack('Por favor, informe seu e-mail de login', '');
         }
@@ -48,16 +53,25 @@ export class LoginViewComponent implements OnInit {
   }
 
   doLogin() {
+    this.processingLogin = true;
     this.userService.login(this.login, this.password)
     .subscribe(
       (response) => {
+        this.processingLogin = false;
         if (response.token !== null) {
           Storage.setToken(response.token);
           this.router.navigate(['home']);
         }
       },
       (error) => {
-        this.showSnack(error.error.message, 'Esqueci minha senha');
+        this.processingLogin = false;
+        if (error.status === 400) {
+          this.showSnack(error.error.message, '');
+        } if (error.status === 403) {
+          this.showSnack('Usuário ou senha inválidos', 'Esqueci minha senha');
+        } else {
+          this.showSnack('Erro no servidor', '');
+        }
       }
     );
   }

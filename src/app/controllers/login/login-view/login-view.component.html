@@ -13,7 +13,10 @@
 
         <button (click)="doForgotMyPassword()" mat-button class="forgot-my-password" >esqueci minha senha</button>
 
-        <button (click)="doLogin()" mat-button color="primary" >Login</button>
+        <div class="form-controll">
+            <button (click)="doLogin()" *ngIf="!processingLogin" mat-button color="primary" >Login</button>
+            <mat-spinner diameter=24 *ngIf="processingLogin" ></mat-spinner>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>

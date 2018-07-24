@@ -29,6 +29,11 @@ mat-card-content p {
   right: -65%;
 }
 
+.form-controll {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 @media screen and (min-width: 37.5rem) {
   .centralized-card {
     width: 26.5rem;
