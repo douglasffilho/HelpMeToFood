@@ -21,23 +21,30 @@ export class LoginViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  private showErrorMessage(message, action) {
+  private showSnack(message, action) {
     const snackBarRef = this.snackBar.open(message, action, { duration: 10000 });
     snackBarRef.onAction().subscribe(() => {
-      this.userService.forgotPassword(this.login)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => {
-          console.log(error);
-          if (error.status === 0) {
-            this.showErrorMessage('Por favor, informe seu e-mail de login', '');
-          }
-          if (error.status === 400) {
-            this.showErrorMessage(error.error.message, '');
-          }
-        }
-      );
+      this.doForgotMyPassword();
     });
+  }
+
+  doForgotMyPassword() {
+    this.userService.forgotPassword(this.login)
+    .subscribe(
+      (response) => {
+        if (response.message !== undefined) {
+          this.showSnack(response.message, '');
+        }
+      },
+      (error) => {
+        if (error.status === 0) {
+          this.showSnack('Por favor, informe seu e-mail de login', '');
+        }
+        if (error.status === 400) {
+          this.showSnack(error.error.message, '');
+        }
+      }
+    );
   }
 
   doLogin() {
@@ -50,7 +57,7 @@ export class LoginViewComponent implements OnInit {
         }
       },
       (error) => {
-        this.showErrorMessage(error.error.message, 'Esqueci minha senha');
+        this.showSnack(error.error.message, 'Esqueci minha senha');
       }
     );
   }

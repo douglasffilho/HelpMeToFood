@@ -10,10 +10,11 @@
         <mat-form-field>
           <input type="password" placeholder="Senha" name="password" [(ngModel)]="password" matInput />
         </mat-form-field>
+
+        <button (click)="doForgotMyPassword()" mat-button class="forgot-my-password" >esqueci minha senha</button>
+
+        <button (click)="doLogin()" mat-button color="primary" >Login</button>
       </form>
     </mat-card-content>
-    <mat-card-footer>
-      <button class="ui-button-info" (click)="doLogin()" mat-button color="primary" >Login</button>
-    </mat-card-footer>
   </mat-card>
 </div>
