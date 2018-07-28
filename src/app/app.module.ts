@@ -26,6 +26,7 @@ import { RouterComponent } from './controllers/router/router.component';
 import { AuthGuard } from './filters/guards/auth.guard';
 import { LogoutComponent } from './controllers/logout/logout.component';
 import { LoaderComponent } from './controllers/loader/loader.component';
+import { ShowRoomViewComponent } from './controllers/show-room/show-room-view/show-room-view.component';
 
 registerLocaleData(localePt);
 
@@ -36,7 +37,8 @@ registerLocaleData(localePt);
     HomeViewComponent,
     RouterComponent,
     LogoutComponent,
-    LoaderComponent
+    LoaderComponent,
+    ShowRoomViewComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

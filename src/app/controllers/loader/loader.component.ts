@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-loader',
@@ -7,18 +7,9 @@ import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 })
 export class LoaderComponent implements OnInit {
 
-  constructor(private renderer: Renderer2, private elRef: ElementRef) { }
+  constructor() { }
 
   ngOnInit() {
-    this.showLoader();
-  }
-
-  showLoader() {
-    this.renderer.setStyle(this.elRef.nativeElement.querySelector('.loader'), 'display', 'block');
-  }
-
-  hideLoader() {
-    this.renderer.setStyle(this.elRef.nativeElement.querySelector('.loader'), 'display', 'none');
   }
 
 }

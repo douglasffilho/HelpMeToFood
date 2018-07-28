@@ -1,0 +1,15 @@
+.loader {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  text-align: center;
+  z-index: 2000;
+}
+
+.loader mat-spinner {
+  margin: auto;
+  margin-top: 8rem;
+}

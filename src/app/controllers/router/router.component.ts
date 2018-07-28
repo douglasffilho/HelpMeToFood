@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-router',
@@ -8,15 +7,14 @@ import { LoaderComponent } from '../loader/loader.component';
 })
 export class RouterComponent implements OnInit {
 
-  @ViewChild(LoaderComponent)
-  loader: LoaderComponent;
+  loading = false;
 
   constructor(private router: Router) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        this.loader.showLoader();
+        this.loading = true;
       } if (event instanceof NavigationEnd) {
-        this.loader.hideLoader();
+        this.loading = false;
       }
     });
   }
