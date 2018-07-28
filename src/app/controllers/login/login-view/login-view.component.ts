@@ -1,42 +1,30 @@
-import { Component, OnInit, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../../services/user-service/user.service';
 import { Storage } from '../../../storage';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { LoaderComponent } from '../../loader/loader.component';
 
 @Component({
   selector: 'app-login-view',
   templateUrl: './login-view.component.html',
   styleUrls: ['./login-view.component.css']
 })
-export class LoginViewComponent implements OnInit, AfterViewInit {
+export class LoginViewComponent implements OnInit {
+
+  @ViewChild(LoaderComponent)
+  loader: LoaderComponent;
 
   login = '';
   password = '';
 
   messages = [];
 
-  processingLogin = false;
-
   constructor(private router: Router,
     private userService: UserService,
-    public snackBar: MatSnackBar,
-    private renderer: Renderer2,
-    private elRef: ElementRef) { }
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
-  }
-
-  private showLoader() {
-    this.renderer.setStyle(this.elRef.nativeElement.querySelector('.loader'), 'display', 'block');
-  }
-
-  private hideLoader() {
-    this.renderer.setStyle(this.elRef.nativeElement.querySelector('.loader'), 'display', 'none');
-  }
-
-  ngAfterViewInit() {
-    this.hideLoader();
   }
 
   private showSnack(message, action) {
@@ -47,20 +35,17 @@ export class LoginViewComponent implements OnInit, AfterViewInit {
   }
 
   doForgotMyPassword() {
-    this.showLoader();
-    this.processingLogin = true;
+    this.loader.showLoader();
     this.userService.forgotPassword(this.login)
     .subscribe(
       (response) => {
-        this.hideLoader();
-        this.processingLogin = false;
+        this.loader.hideLoader();
         if (response.message !== undefined) {
           this.showSnack(response.message, '');
         }
       },
       (error) => {
-        this.hideLoader();
-        this.processingLogin = false;
+        this.loader.hideLoader();
         if (error.status === 0) {
           this.showSnack('Por favor, informe seu e-mail de login', '');
         }
@@ -72,21 +57,18 @@ export class LoginViewComponent implements OnInit, AfterViewInit {
   }
 
   doLogin() {
-    this.showLoader();
-    this.processingLogin = true;
+    this.loader.showLoader();
     this.userService.login(this.login, this.password)
     .subscribe(
       (response) => {
-        this.hideLoader();
-        this.processingLogin = false;
+        this.loader.hideLoader();
         if (response.token !== null) {
           Storage.setToken(response.token);
           this.router.navigate(['home']);
         }
       },
       (error) => {
-        this.hideLoader();
-        this.processingLogin = false;
+        this.loader.hideLoader();
         if (error.status === 400) {
           this.showSnack(error.error.message, '');
         } if (error.status === 403) {

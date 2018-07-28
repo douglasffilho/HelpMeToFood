@@ -25,6 +25,7 @@ import { HomeViewComponent } from './controllers/home/home-view/home-view.compon
 import { RouterComponent } from './controllers/router/router.component';
 import { AuthGuard } from './filters/guards/auth.guard';
 import { LogoutComponent } from './controllers/logout/logout.component';
+import { LoaderComponent } from './controllers/loader/loader.component';
 
 registerLocaleData(localePt);
 
@@ -34,7 +35,8 @@ registerLocaleData(localePt);
     LoginViewComponent,
     HomeViewComponent,
     RouterComponent,
-    LogoutComponent
+    LogoutComponent,
+    LoaderComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

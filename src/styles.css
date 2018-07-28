@@ -11,15 +11,13 @@ html, body {
 }
 
 .loader {
-  display: block;
+  display: none;
   position: fixed;
   left: 0;
   top: 0;
   width: -webkit-fill-available;
   height: -webkit-fill-available;
   text-align: center;
-  opacity: 0.2;
-  background-color: black;
   z-index: 2000;
 }
 
