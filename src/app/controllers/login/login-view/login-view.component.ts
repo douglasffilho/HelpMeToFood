@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { UserService } from '../../../services/user-service/user.service';
 import { Storage } from '../../../storage';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './login-view.component.html',
   styleUrls: ['./login-view.component.css']
 })
-export class LoginViewComponent implements OnInit {
+export class LoginViewComponent implements OnInit, AfterViewInit {
 
   login = '';
   password = '';
@@ -18,9 +18,25 @@ export class LoginViewComponent implements OnInit {
 
   processingLogin = false;
 
-  constructor(private router: Router, private userService: UserService, public snackBar: MatSnackBar) { }
+  constructor(private router: Router,
+    private userService: UserService,
+    public snackBar: MatSnackBar,
+    private renderer: Renderer2,
+    private elRef: ElementRef) { }
 
   ngOnInit() {
+  }
+
+  private showLoader() {
+    this.renderer.setStyle(this.elRef.nativeElement.querySelector('.loader'), 'display', 'block');
+  }
+
+  private hideLoader() {
+    this.renderer.setStyle(this.elRef.nativeElement.querySelector('.loader'), 'display', 'none');
+  }
+
+  ngAfterViewInit() {
+    this.hideLoader();
   }
 
   private showSnack(message, action) {
@@ -31,16 +47,19 @@ export class LoginViewComponent implements OnInit {
   }
 
   doForgotMyPassword() {
+    this.showLoader();
     this.processingLogin = true;
     this.userService.forgotPassword(this.login)
     .subscribe(
       (response) => {
+        this.hideLoader();
         this.processingLogin = false;
         if (response.message !== undefined) {
           this.showSnack(response.message, '');
         }
       },
       (error) => {
+        this.hideLoader();
         this.processingLogin = false;
         if (error.status === 0) {
           this.showSnack('Por favor, informe seu e-mail de login', '');
@@ -53,10 +72,12 @@ export class LoginViewComponent implements OnInit {
   }
 
   doLogin() {
+    this.showLoader();
     this.processingLogin = true;
     this.userService.login(this.login, this.password)
     .subscribe(
       (response) => {
+        this.hideLoader();
         this.processingLogin = false;
         if (response.token !== null) {
           Storage.setToken(response.token);
@@ -64,6 +85,7 @@ export class LoginViewComponent implements OnInit {
         }
       },
       (error) => {
+        this.hideLoader();
         this.processingLogin = false;
         if (error.status === 400) {
           this.showSnack(error.error.message, '');
