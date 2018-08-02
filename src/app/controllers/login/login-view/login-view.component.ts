@@ -60,8 +60,8 @@ export class LoginViewComponent implements OnInit {
     .subscribe(
       (response) => {
         this.loading = false;
-        if (response.token !== null) {
-          Storage.setToken(response.token);
+        if (response.response.token !== null) {
+          Storage.setToken(response.response.token);
           this.router.navigate(['home']);
         }
       },
@@ -71,7 +71,7 @@ export class LoginViewComponent implements OnInit {
           this.showSnack(error.error.message, '');
         } if (error.status === 403) {
           this.showSnack('Usuário ou senha inválidos', 'Esqueci minha senha');
-        } else {
+        } if (error.status === 0) {
           this.showSnack('Erro no servidor', '');
         }
       }
