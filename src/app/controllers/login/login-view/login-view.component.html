@@ -3,7 +3,7 @@
   <mat-card class="centralized-card">
     <mat-card-content>
       <p>Help Me To Food</p>
-      <form autocomplete="off" class="form">
+      <form autocomplete="off" class="form" (submit)="doLogin()">
         <mat-form-field>
           <input type="text" placeholder="Login" name="login" [(ngModel)]="login" matInput />
         </mat-form-field>
@@ -12,12 +12,11 @@
           <input type="password" placeholder="Senha" name="password" [(ngModel)]="password" matInput />
         </mat-form-field>
 
-        <button (click)="doForgotMyPassword()" mat-button class="forgot-my-password" >esqueci minha senha</button>
-
         <div class="form-controll">
-            <button (click)="doLogin()" mat-button color="primary" >Login</button>
+            <button type="submit" mat-button color="primary" >Login</button>
         </div>
       </form>
+      <button (click)="doForgotMyPassword()" mat-button class="forgot-my-password" >esqueci minha senha</button>
     </mat-card-content>
   </mat-card>
 </div>

@@ -13,11 +13,12 @@ import { appRoutes } from './routes';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { LoginViewComponent } from './controllers/login/login-view/login-view.component';
@@ -50,7 +51,8 @@ registerLocaleData(localePt);
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt'},

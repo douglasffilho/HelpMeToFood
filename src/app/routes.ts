@@ -6,7 +6,7 @@ import { LogoutComponent } from './controllers/logout/logout.component';
 import { ShowRoomViewComponent } from './controllers/show-room/show-room-view/show-room-view.component';
 
 export const appRoutes: Routes = [
-  { path: 'showRoom',
+  { path: 'show-room',
     component: ShowRoomViewComponent },
   { path: 'login',
     component: LoginViewComponent },
@@ -16,6 +16,6 @@ export const appRoutes: Routes = [
     component: HomeViewComponent,
     canActivate: [AuthGuard] },
   { path: '',
-    redirectTo: 'showRoom',
+    redirectTo: 'show-room',
     pathMatch: 'full' }
 ];

@@ -9,3 +9,9 @@ html, body {
   margin: 0;
   font-family: NothingYouCouldDo !important;
 }
+
+.centralized-card {
+  text-align: center;
+  width: -webkit-fill-available;
+  margin: auto;
+}

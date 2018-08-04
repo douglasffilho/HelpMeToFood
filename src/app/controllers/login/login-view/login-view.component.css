@@ -2,18 +2,13 @@
   height: -webkit-fill-available;
   background: linear-gradient(180deg, #ffc257 50%, #ffffff 50%);
   padding: 10%;
+  padding-top: 9rem;
 }
 
 mat-card-content p {
   font-family: NothingYouCouldDo !important;
   font-weight: bold !important;
   font-size: 1.07rem !important;
-}
-
-.centralized-card {
-  text-align: center;
-  width: -webkit-fill-available;
-  margin: auto;
 }
 
 .form {
@@ -26,7 +21,6 @@ mat-card-content p {
   font-size: 0.6rem;
   text-align: right;
   width: fit-content;
-  right: -65%;
 }
 
 .form-controll {
